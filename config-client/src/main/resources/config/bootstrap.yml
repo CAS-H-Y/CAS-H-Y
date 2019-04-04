@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: serverclient    # 对应config server所获取的配置文件的{application}
+  cloud:
+    config:
+     discovery:
+       enabled: true #开启配置服务发现
+       service-id: config-service #配置服务实例名称，也就是Config Server的应用名
+     profile: dev
+     #spring.cloud.config.label：是配置分支名，默认是master,可以不配置
+     #spring.cloud.config.profile：环境名，对应Config Server的env
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1001/eureka/
