@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: heyang
+  application:
+    name: hy
+
+eureka:
+  client:
+    register-with-eureka: true #表示不注册，做集群是设置成true
+    fetch-registry: true #表示不拉取，做集群是设置成true
+    service-url:
+      defaultZone: http://localhost:1001/eureka/
+
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml
+
+server:
+  port: 1003

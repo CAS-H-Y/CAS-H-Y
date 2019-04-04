@@ -1,0 +1,30 @@
+server:
+  port: 80
+spring:
+  application:
+    name: hy-zuul
+
+eureka:
+  client:
+    service-url:
+       defaultZone: http://localhost:1001/eureka
+    instance:
+        prefer-ip-address: true
+        instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${spring.application.instance_id:${server.port}}
+        hostname: localhost
+        ip-address: localhost
+
+ribbon:
+  NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule #配置规则 轮询
+  ConnectTimeout: 3000
+  ReadTimeout: 60000
+
+zuul:
+   prefix: /techouse #为zuul设置一个公共的前缀
+   routes:
+     api-a:
+       path: /api-hy/**
+       service-id: hy
+     api-b:
+       path: /api-hy1/**
+       service-id: hy
